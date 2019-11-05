@@ -21,10 +21,21 @@ function App() {
         exact
         path="/palette/:id"
         render={({ match }) => (
-          <Palette palette={generatePalette(findPalette(match.params.id))} />
+          <Palette
+            palette={generatePalette(findPalette(match.params.id))}
+            />
+            )}
+            />
+      <Route
+        exact
+        path="/palette/:paletteId/:colorId"
+        render={({ match }) => (
+          <SingleColorPalette
+          palette={generatePalette(findPalette(match.params.paletteId))}
+          colorId={match.params.colorId}
+          />
         )}
       />
-      <Route exact path="/palette/:paletteId/:colorId" render={() => <SingleColorPalette/>} />
     </Switch>
   );
 }

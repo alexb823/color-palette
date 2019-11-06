@@ -59,6 +59,10 @@
   font-size: 12px;
 }
 
+.light-text {
+  color: white;
+}
+
 .see-more {
   background-color: rgba(255, 255, 255, 0.3);
   position: absolute;

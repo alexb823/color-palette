@@ -20,7 +20,7 @@ class ColorBox extends Component {
     const { name, backgroundColor, paletteId, id, showLink } = this.props;
     const { copied } = this.state;
     const isDarkColor = chroma(backgroundColor).luminance() <= 0.08;
-    const isLightColor = chroma(backgroundColor).luminance() >= 0.8;
+    const isLightColor = chroma(backgroundColor).luminance() >= 0.7;
     return (
       <CopyToClipboard
         text={this.props.backgroundColor}
@@ -33,20 +33,20 @@ class ColorBox extends Component {
           />
           <div className={`copy-msg ${copied && 'show'}`}>
             <h1>copied!</h1>
-            <p>{backgroundColor}</p>
+            <p className={isLightColor && 'dark-text'}>{backgroundColor}</p>
           </div>
           <div className="copy-container">
             <div className="box-content">
               <span className={isDarkColor ? "light-text" : ""}>{name} {chroma(backgroundColor).luminance()}</span>
             </div>
-            <button className="copy-button">Copy</button>
+            <button className={`copy-button ${isLightColor && 'dark-text'}`}>Copy</button>
           </div>
           {showLink && (
             <Link
               to={`/palette/${paletteId}/${id}`}
               onClick={e => e.stopPropagation()}
             >
-              <span className="see-more">More</span>
+              <span className={`see-more ${isLightColor && 'dark-text'}`}>MORE</span>
             </Link>
           )}
         </div>

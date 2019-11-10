@@ -3,7 +3,7 @@ import chroma from 'chroma-js';
 export default {
   colorBox: {
     width: '20%',
-    height: ({ showingFullPalette }) => showingFullPalette ? '25%' : '50%',
+    height: ({ showingFullPalette }) => (showingFullPalette ? '25%' : '50%'),
     margin: '0 auto',
     display: 'inline-block',
     position: 'relative',
@@ -11,16 +11,21 @@ export default {
     marginBottom: '-3.5px',
     '&:hover button': {
       opacity: 1,
-    }
+    },
   },
   copyText: {
-    color: ({ backgroundColor }) => chroma(backgroundColor).luminance() >= 0.7 ? 'black' : 'white'
+    color: ({ backgroundColor }) =>
+      chroma(backgroundColor).luminance() >= 0.7 ? 'black' : 'white',
   },
   colorName: {
-    color: ({ backgroundColor }) => chroma(backgroundColor).luminance() <= 0.08 ? 'white' : 'black'
+    color: ({ backgroundColor }) =>
+      chroma(backgroundColor).luminance() <= 0.08 ? 'white' : 'black',
   },
   seeMore: {
-    color: ({ backgroundColor }) => chroma(backgroundColor).luminance() >= 0.7 ? 'rgba(0, 0, 0, 0.5)' : 'white',
+    color: ({ backgroundColor }) =>
+      chroma(backgroundColor).luminance() >= 0.7
+        ? 'rgba(0, 0, 0, 0.5)'
+        : 'white',
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     position: 'absolute',
     border: 'none',
@@ -33,7 +38,10 @@ export default {
     textTransform: 'uppercase',
   },
   copyButton: {
-    color: ({ backgroundColor }) => chroma(backgroundColor).luminance() >= 0.7 ? 'rgba(0, 0, 0, 0.5)' : 'white',
+    color: ({ backgroundColor }) =>
+      chroma(backgroundColor).luminance() >= 0.7
+        ? 'rgba(0, 0, 0, 0.5)'
+        : 'white',
     width: '100px',
     height: '30px',
     position: 'absolute',
@@ -105,7 +113,7 @@ export default {
       fontSize: '2rem',
       fontWeight: '100',
       textTransform: 'uppercase',
-    }
+    },
   },
   showMsg: {
     opacity: '1',
@@ -113,5 +121,5 @@ export default {
     zIndex: '25',
     transition: 'all 0.4s ease-in-out',
     transitionDelay: '0.3s',
-  }
-}
+  },
+};

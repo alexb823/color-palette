@@ -21,7 +21,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/palette/new" render={routeProps => (
-        <NewPaletteForm savePalette={savePalette} {...routeProps} />)} />
+        <NewPaletteForm palettes={palettes} savePalette={savePalette} {...routeProps} />)} />
       <Route
         exact
         path="/"

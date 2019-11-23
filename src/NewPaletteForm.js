@@ -80,18 +80,29 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('teal');
   const [colors, setColors] = useState([{ name: 'default', color: '#246B6B' }]);
-  const [newColorName, handleColorNameChange, resetColorName] = useInputState('');
-  const [newPaletteName, handlePaletteNameChange, resetPaletteName] = useInputState('');
+  const [newColorName, handleColorNameChange, resetColorName] = useInputState(
+    ''
+  );
+  const [
+    newPaletteName,
+    handlePaletteNameChange,
+    resetPaletteName,
+  ] = useInputState('');
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', () =>
-      colors.every(({ name }) => name.toLowerCase() !== newColorName.toLowerCase())
+      colors.every(
+        ({ name }) => name.toLowerCase() !== newColorName.toLowerCase()
+      )
     );
     ValidatorForm.addValidationRule('isColorUnique', () =>
       colors.every(({ color }) => color !== currentColor)
     );
     ValidatorForm.addValidationRule('isPaletteNameUnique', () =>
-      palettes.every(({ paletteName }) => paletteName.toLowerCase() !== newPaletteName.toLowerCase())
+      palettes.every(
+        ({ paletteName }) =>
+          paletteName.toLowerCase() !== newPaletteName.toLowerCase()
+      )
     );
   }, [colors, currentColor, newColorName, newPaletteName]);
 
@@ -110,7 +121,7 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
   const addNewColor = () => {
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
-    resetColorName()
+    resetColorName();
   };
 
   const handleSubmit = () => {
@@ -121,7 +132,7 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
     };
     savePalette(newPalette);
     history.push('/');
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -146,19 +157,22 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-          
+
           <ValidatorForm onSubmit={handleSubmit}>
             <TextValidator
               label="Palette Name"
               value={newPaletteName}
               onChange={handlePaletteNameChange}
               validators={['required', 'isPaletteNameUnique']}
-              errorMessages={['this field is required', 'pelette name must be unique']}
-              />
+              errorMessages={[
+                'this field is required',
+                'pelette name must be unique',
+              ]}
+            />
             <Button variant="contained" color="primary" type="submit">
               Save Palette
             </Button>
-           </ValidatorForm>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
 
@@ -198,7 +212,7 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
             errorMessages={[
               'this field is required',
               'Color Name Must Be Unique',
-              'Color Must Be Unique'
+              'Color Must Be Unique',
             ]}
           />
           <Button

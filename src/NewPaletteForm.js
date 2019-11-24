@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { arrayMove } from 'react-sortable-hoc';
+
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -13,8 +15,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import DraggableColorBox from './DraggableColorBox';
+
 import useInputState from './hooks/useInputState';
+import DraggableColorList from './DraggableColorList';
 
 const drawerWidth = 400;
 
@@ -124,6 +127,10 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
     resetColorName();
   };
 
+  const removeColor = colorName => {
+    setColors(colors.filter(color => color.name !== colorName));
+  };
+
   const handleSubmit = () => {
     const newPalette = {
       paletteName: newPaletteName,
@@ -132,6 +139,10 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
     };
     savePalette(newPalette);
     history.push('/');
+  };
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors(arrayMove(colors, oldIndex, newIndex));
   };
 
   return (
@@ -166,7 +177,7 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
               validators={['required', 'isPaletteNameUnique']}
               errorMessages={[
                 'this field is required',
-                'pelette name must be unique',
+                'palette name must be unique',
               ]}
             />
             <Button variant="contained" color="primary" type="submit">
@@ -232,9 +243,12 @@ const NewPaletteForm = ({ palettes, savePalette, history }) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        {colors.map(color => (
-          <DraggableColorBox color={color.color} name={color.name} />
-        ))}
+        <DraggableColorList
+          colors={colors}
+          removeColor={removeColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+        />
       </main>
     </div>
   );

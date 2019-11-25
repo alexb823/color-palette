@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { arrayMove } from 'react-sortable-hoc';
 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,11 +14,42 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import useInputState from './hooks/useInputState';
 
+const drawerWidth = 400;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: '64px',
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  hide: {
+    display: 'none',
+  },
+}));
+
 const PaletteFormNav = props => {
+  const classes = useStyles();
   const {
     open,
     handleDrawerOpen,
-    classes,
     palettes,
     colors,
     history,
@@ -53,7 +83,7 @@ const PaletteFormNav = props => {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -73,9 +103,10 @@ const PaletteFormNav = props => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Create a Palette
           </Typography>
-
+        </Toolbar>
+        <div className={classes.btn}>
           <ValidatorForm onSubmit={handleSubmit}>
             <TextValidator
               label="Palette Name"
@@ -90,16 +121,11 @@ const PaletteFormNav = props => {
             <Button variant="contained" color="primary" type="submit">
               Save Palette
             </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              component={Link}
-              to="/"
-            >
-              Go Back
-            </Button>
           </ValidatorForm>
-        </Toolbar>
+          <Button variant="contained" color="secondary" component={Link} to="/">
+            Go Back
+          </Button>
+        </div>
       </AppBar>
     </div>
   );

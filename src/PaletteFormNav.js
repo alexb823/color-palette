@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     }),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     height: '64px',
   },
   appBarShift: {
@@ -42,11 +43,26 @@ const useStyles = makeStyles(theme => ({
   hide: {
     display: 'none',
   },
+  navButtons: {
+    marginRight: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(0, 1),
+  },
 }));
 
 const PaletteFormNav = props => {
   const classes = useStyles();
+  const [formOpen, setFormOpen] = useState(false);
   const { open, handleDrawerOpen } = props;
+
+  const showForm = () => {
+    setFormOpen(true);
+  };
+
+  const hideForm = () => {
+    setFormOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -72,13 +88,29 @@ const PaletteFormNav = props => {
             Create a Palette
           </Typography>
         </Toolbar>
-        <div className={classes.btn}>
-          <PaletteMetaForm {...props} />
-          <Button variant="contained" color="secondary" component={Link} to="/">
+        <div className={classes.navButtons}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            onClick={showForm}
+          >
+            Save Palette
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="secondary"
+            component={Link}
+            to="/"
+          >
             Go Back
           </Button>
         </div>
       </AppBar>
+      {formOpen && (
+        <PaletteMetaForm {...props} formOpen={formOpen} hideForm={hideForm} />
+      )}
     </div>
   );
 };

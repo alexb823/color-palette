@@ -1,4 +1,4 @@
-export default {
+export default theme => ({
   palette: {
     height: '100vh',
     display: 'flex',
@@ -35,6 +35,18 @@ export default {
       textTransform: 'uppercase',
       border: 'none',
       textDecoration: 'none',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '25%',
+      height: '33.3333%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+      height: '20%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      height: '10%',
     }
   }
-}
+})

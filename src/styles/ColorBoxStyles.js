@@ -1,6 +1,6 @@
 import chroma from 'chroma-js';
 
-export default {
+export default theme => ({
   colorBox: {
     width: '20%',
     height: ({ showingFullPalette }) => (showingFullPalette ? '25%' : '50%'),
@@ -12,6 +12,18 @@ export default {
     '&:hover button': {
       opacity: 1,
     },
+    [theme.breakpoints.down('md')]: {
+      width: '25%',
+      height: ({ showingFullPalette }) => (showingFullPalette ? '20%' : '33.3333%'),
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+      height: ({ showingFullPalette }) => (showingFullPalette ? '10%' : '20%'),
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      height: ({ showingFullPalette }) => (showingFullPalette ? '5%' : '10%'),
+    }
   },
   copyText: {
     color: ({ backgroundColor }) =>
@@ -122,4 +134,4 @@ export default {
     transition: 'all 0.4s ease-in-out',
     transitionDelay: '0.3s',
   },
-};
+});

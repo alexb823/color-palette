@@ -11,19 +11,23 @@ function App() {
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(savedPalettes || seedColors);
 
-  useEffect(() => {
-    syncLocalStorage();
-  }, [palettes])
-
   const findPalette = id => palettes.find(palette => palette.id === id);
 
   const savePalette = newPalette => {
     setPalettes([...palettes, newPalette]);
   };
 
+  const deletePalette = id => {
+    setPalettes(palettes.filter(palette => palette.id !== id));
+  };
+
   const syncLocalStorage = () => {
     window.localStorage.setItem('palettes', JSON.stringify(palettes));
-  }
+  };
+
+  useEffect(() => {
+    syncLocalStorage();
+  }, [palettes]);
 
   return (
     <Switch>
@@ -42,7 +46,11 @@ function App() {
         exact
         path="/"
         render={routeProps => (
-          <PaletteList palettes={palettes} {...routeProps} />
+          <PaletteList
+            palettes={palettes}
+            deletePalette={deletePalette}
+            {...routeProps}
+          />
         )}
       />
       <Route

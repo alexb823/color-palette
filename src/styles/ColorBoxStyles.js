@@ -14,7 +14,8 @@ export default theme => ({
     },
     [theme.breakpoints.down('md')]: {
       width: '25%',
-      height: ({ showingFullPalette }) => (showingFullPalette ? '20%' : '33.3333%'),
+      height: ({ showingFullPalette }) =>
+        showingFullPalette ? '20%' : '33.3333%',
     },
     [theme.breakpoints.down('sm')]: {
       width: '50%',
@@ -23,7 +24,7 @@ export default theme => ({
     [theme.breakpoints.down('xs')]: {
       width: '100%',
       height: ({ showingFullPalette }) => (showingFullPalette ? '5%' : '10%'),
-    }
+    },
   },
   copyText: {
     color: ({ backgroundColor }) =>
@@ -120,6 +121,9 @@ export default theme => ({
       marginBottom: '0',
       padding: '1rem',
       textTransform: 'uppercase',
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '6rem',
+      },
     },
     '& p': {
       fontSize: '2rem',

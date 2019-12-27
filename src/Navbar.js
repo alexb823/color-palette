@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Select, MenuItem, Snackbar, IconButton } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import Slider from 'rc-slider';
@@ -36,7 +36,7 @@ class Navbar extends Component {
           <Link to="/">reactcolorpicker</Link>
         </div>
         {showingAllColors &&
-        <div>
+        <div className={classes.levelWrapper}>
           <span>Level: {level}</span>
           <div className={classes.slider}>
             <Slider

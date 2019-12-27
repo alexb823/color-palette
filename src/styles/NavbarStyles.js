@@ -1,4 +1,6 @@
-export default {
+import { CallReceived } from '@material-ui/icons';
+
+export default theme => ({
   navbar: {
     display: 'flex',
     alignItems: 'center',
@@ -17,10 +19,18 @@ export default {
     '& a': {
       textDecoration: 'none',
       color: 'black',
-    }
+    },
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
+  levelWrapper: {
+    display: 'flex',
+    flexGrow: 1,
   },
   slider: {
-    width: '340px',
+    width: 'calc(100% - 100px)',
+    maxWidth: '400px',
     margin: '0 10px',
     display: 'inline-block',
     '& .rc-slider-track': {
@@ -38,10 +48,10 @@ export default {
       height: '13px',
       marginLeft: '-7px',
       marginTop: '-4px',
-    }
+    },
   },
   selectContainer: {
     marginLeft: 'auto',
     marginRight: '1rem',
-  }
-}
+  },
+});

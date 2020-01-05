@@ -1,4 +1,4 @@
-export default {
+export default theme => ({
   root: {
     backgroundColor: 'blue',
     height: '100vh',
@@ -7,11 +7,17 @@ export default {
     justifyContent: 'center',
   },
   container: {
-    width: '50%',
+    width: '55%',
     display: 'flex',
     flexDisplay: 'column',
     alignItems: 'flex-start',
     flexWrap: 'wrap',
+    [theme.breakpoints.down('md')]: {
+      width: '80%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '75%',
+    },
   },
   nav: {
     display: 'flex',
@@ -21,14 +27,21 @@ export default {
     color: 'white',
     '& a': {
       textDecoration: 'none',
-      color: 'white'
-    }
+      color: 'white',
+    },
   },
   palettes: {
     boxSizing: 'border-box',
     width: '100%',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
-    gridGap: '5%',
+    gridGap: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: 'repeat(2, 50%)',
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateColumns: 'repeat(1, 100%)',
+      gridGap: theme.spacing(2),
+    },
   },
-};
+});

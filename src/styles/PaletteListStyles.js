@@ -1,10 +1,15 @@
+import bg from './bg.svg';
+
 export default theme => ({
   root: {
-    backgroundColor: 'blue',
+    backgroundColor: '#294bad',
+    backgroundImage: `url(${bg})`,
+    /* background by SVGBackgrounds.com */
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    overflow: 'scroll',
   },
   container: {
     width: '55%',
@@ -44,4 +49,7 @@ export default theme => ({
       gridGap: theme.spacing(2),
     },
   },
+  heading: {
+    fontSize: '2rem',
+  }
 });

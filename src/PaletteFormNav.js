@@ -59,7 +59,7 @@ const PaletteFormNav = props => {
             color="primary"
             onClick={showForm}
           >
-            Save Palette
+            Save
           </Button>
           <Button
             className={classes.button}

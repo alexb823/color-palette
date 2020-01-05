@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -8,10 +8,22 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
-    marginBottom: '-3.5px',
+    marginBottom: '-5px',
     '&:hover svg': {
       color: 'white',
       transform: 'scale(1.25)',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '25%',
+      height: '20%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+      height: '10%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      height: '5%',
     },
   },
   boxContent: {

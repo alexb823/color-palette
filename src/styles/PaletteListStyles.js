@@ -1,6 +1,15 @@
 import bg from './bg.svg';
 
 export default theme => ({
+  '@global': {
+    '.fade-exit': {
+      opacity: 1,
+    },
+    '.fade-exit-active': {
+      opacity: 0,
+      transition: 'opacity 500ms ease-out',
+    },
+  },
   root: {
     backgroundColor: '#294bad',
     backgroundImage: `url(${bg})`,
@@ -51,5 +60,5 @@ export default theme => ({
   },
   heading: {
     fontSize: '2rem',
-  }
+  },
 });

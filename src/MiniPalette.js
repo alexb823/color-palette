@@ -11,7 +11,7 @@ const MiniPalette = ({
   colors,
   emoji,
   handleClick,
-  deletePalette,
+  openDialog,
 }) => {
 
   const miniColorBoxes = colors.map(color => (
@@ -24,7 +24,7 @@ const MiniPalette = ({
 
   const handleDelete = e => {
     e.stopPropagation();
-    deletePalette(id);
+    openDialog(id);
   }
 
   return (

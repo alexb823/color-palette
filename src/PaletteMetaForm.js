@@ -36,6 +36,7 @@ const PaletteMetaForm = props => {
     };
     savePalette(newPalette);
     resetPaletteName();
+    setStage('');
     history.push('/');
   };
 

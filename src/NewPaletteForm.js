@@ -40,7 +40,14 @@ const NewPaletteForm = props => {
     const allColors = palettes.reduce((acc, palette) => {
       return [...acc, ...palette.colors];
     }, []);
-    const randomIdx = Math.floor(Math.random() * allColors.length);
+    let randomIdx;
+    let isDuplicateColor = true;
+
+    while (isDuplicateColor) {
+      randomIdx = Math.floor(Math.random() * allColors.length);
+      const randomColor = allColors[randomIdx];
+      isDuplicateColor = colors.some(color => color.name === randomColor.name);
+    }
     setColors([...colors, allColors[randomIdx]]);
   };
 

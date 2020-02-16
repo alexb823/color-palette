@@ -1,6 +1,7 @@
+import chroma from 'chroma-js';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme, props) => ({
   root: {
     width: '20%',
     height: '25%',
@@ -34,10 +35,13 @@ const useStyles = makeStyles(theme => ({
     left: '0px',
     bottom: '0px',
     padding: '5px',
-    color: 'rgba(0, 0, 0, 0.5)',
     letterSpacing: '1px',
     textTransform: 'uppercase',
     fontSize: '12px',
+    color: props =>
+      chroma(props.color).luminance() <= 0.08
+        ? 'rgba(255, 255, 255, 0.8)'
+        : 'rgba(0, 0, 0, 0.6)',
   },
   deleteIcon: {
     transition: 'all 0.3s ease-in-out',

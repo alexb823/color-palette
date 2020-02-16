@@ -35,20 +35,20 @@ class Navbar extends Component {
         <div className={classes.logo}>
           <Link to="/">reactcolorpicker</Link>
         </div>
-        {showingAllColors &&
-        <div className={classes.levelWrapper}>
-          <span>Level: {level}</span>
-          <div className={classes.slider}>
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              step={100}
-              onAfterChange={changeLevel}
-            />
+        {showingAllColors && (
+          <div className={classes.levelWrapper}>
+            <span>Level: {level}</span>
+            <div className={classes.slider}>
+              <Slider
+                defaultValue={level}
+                min={100}
+                max={900}
+                step={100}
+                onAfterChange={changeLevel}
+              />
+            </div>
           </div>
-        </div>
-        }
+        )}
         <div className={classes.selectContainer}>
           <Select value={format} onChange={this.handleFormatChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
@@ -62,7 +62,9 @@ class Navbar extends Component {
           autoHideDuration={3000}
           onClose={this.closeSnackbar}
           message={
-            <span id="message-id">Format Changed To {format.toUpperCase()}</span>
+            <span id="message-id">
+              Format Changed To {format.toUpperCase()}
+            </span>
           }
           ContentProps={{ 'aria-describedby': 'message-id' }}
           action={[

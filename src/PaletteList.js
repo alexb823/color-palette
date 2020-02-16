@@ -13,7 +13,9 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
+
 import MiniPalette from './MiniPalette';
+
 import styles from './styles/PaletteListStyles';
 
 class PaletteList extends Component {

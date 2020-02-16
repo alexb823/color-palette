@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import styles from './styles/MiniPaletteStyles';
 
-import DeleteIcon from '@material-ui/icons/Delete';
 
 const MiniPalette = ({
   classes,
@@ -13,8 +14,6 @@ const MiniPalette = ({
   goToPalette,
   openDialog,
 }) => {
-  console.log('RENDERED', paletteName);
-
   const miniColorBoxes = colors.map(color => (
     <div
       className={classes.miniColor}

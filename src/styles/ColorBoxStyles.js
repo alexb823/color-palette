@@ -99,6 +99,7 @@ export default theme => ({
     position: 'absolute',
   },
   copyMsg: {
+    width: 0,
     position: 'fixed',
     left: '0',
     right: '0',
@@ -132,6 +133,7 @@ export default theme => ({
     },
   },
   showMsg: {
+    width: 'auto',
     opacity: '1',
     transform: 'scale(1)',
     zIndex: '25',
